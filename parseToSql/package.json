@@ -1,0 +1,21 @@
+{
+  "name": "parsetosql",
+  "version": "1.0.0",
+  "description": "A node parser that converts the default hubway csv data into sql insert statements.",
+  "main": "parseTrips.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cpcollin/hubway2017.git/parseToSql"
+  },
+  "keywords": [
+    "git",
+    "node",
+    "hubway",
+    "parse"
+  ],
+  "author": "bwags",
+  "license": "ISC"
+}
