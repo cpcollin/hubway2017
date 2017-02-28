@@ -40,7 +40,13 @@ CREATE TABLE IF NOT EXISTS `trips` (
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
   `start_station_number` char(6) NOT NULL,
-  `end_station_number` char(6) NOT NULL,
+  `start_station_name` varchar(256) NOT NULL,
+  `start_station_latitude` decimal(10,8) DEFAULT NULL,
+  `start_station_longitude` decimal(11,8) DEFAULT NULL,
+  `end_station_number` char(6) DEFAULT NULL,
+  `end_station_name` varchar(256) DEFAULT NULL,
+  `end_station_latitude` decimal(10,8) DEFAULT NULL,
+  `end_station_longitude` decimal(11,8) DEFAULT NULL,
   `bike_id` varchar(256) NOT NULL,
   `member_type` varchar(256) NOT NULL,
   `birth_year` char(4) DEFAULT NULL,
@@ -53,12 +59,6 @@ CREATE TABLE IF NOT EXISTS `trips` (
 --
 
 --
--- Indexes for table `stations`
---
-ALTER TABLE `stations`
-  ADD UNIQUE KEY `station_number` (`station_number`);
-
---
 -- Indexes for table `trips`
 --
 ALTER TABLE `trips`
@@ -67,3 +67,12 @@ ALTER TABLE `trips`
   ADD KEY `duration` (`duration`) USING BTREE,
   ADD KEY `end_date` (`end_date`) USING BTREE,
   ADD KEY `start_date` (`start_date`) USING BTREE;
+
+--
+-- Indexes for table `stations`
+--
+ALTER TABLE `stations`
+  ADD UNIQUE KEY `station_number` (`station_number`);
+
+--
+--

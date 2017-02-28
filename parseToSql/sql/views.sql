@@ -53,6 +53,18 @@ CREATE TABLE IF NOT EXISTS `riders_per_month` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `riders_per_week`
+--
+CREATE TABLE IF NOT EXISTS `riders_per_week` (
+`year` int(4)
+,`month` int(2)
+,`week` int(2)
+,`total` bigint(21)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `riders_per_day`
 --
 DROP TABLE IF EXISTS `riders_per_day`;
@@ -76,4 +88,13 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `riders_per_month`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `riders_per_month` AS select year(`trips`.`start_date`) AS `year`,month(`trips`.`start_date`) AS `month`,count(0) AS `total` from `trips` group by year(`trips`.`start_date`),month(`trips`.`start_date`) order by year(`trips`.`start_date`),month(`trips`.`start_date`);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `riders_per_week`
+--
+DROP TABLE IF EXISTS `riders_per_week`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `riders_per_week` AS select year(`trips`.`start_date`) AS `year`,month(`trips`.`start_date`) AS `month`,week(`trips`.`start_date`,0) AS `week`,count(0) AS `total` from `trips` group by year(`trips`.`start_date`),month(`trips`.`start_date`),week(`trips`.`start_date`,0) order by year(`trips`.`start_date`),month(`trips`.`start_date`),week(`trips`.`start_date`,0);
 
